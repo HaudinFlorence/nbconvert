@@ -14,6 +14,7 @@ from typing import Any, Callable, Dict, Iterable, Match, Optional, Tuple
 import bs4
 import mistune
 from mistune.renderers.markdown import MarkdownRenderer
+from nbformat import NotebookNode
 from pygments import highlight
 from pygments.formatters import HtmlFormatter
 from pygments.lexer import Lexer
@@ -21,7 +22,6 @@ from pygments.lexers import get_lexer_by_name
 from pygments.util import ClassNotFound
 
 from nbconvert.filters.strings import add_anchor
-from nbformat import NotebookNode
 
 try:  # for Mistune >= 3.0
     from mistune import (  # type:ignore[attr-defined]
@@ -386,7 +386,7 @@ class IPythonRenderer(HTMLRenderer):
 
         attachment_prefix = "attachment:"
         if src.startswith(attachment_prefix):
-            name = src[len(attachment_prefix):]
+            name = src[len(attachment_prefix) :]
 
             if name not in self.attachments:
                 msg = f"missing attachment: {name}"
